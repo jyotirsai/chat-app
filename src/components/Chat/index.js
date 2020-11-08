@@ -19,11 +19,15 @@ const useStyles = makeStyles({
     chatBox: {
         height: "69.69vh",
         borderStyle: "dotted",
+        wordBreak: "break-all",
         overflow: "hidden",
         '&:hover': {
             overflowY: "scroll",
         },
     },
+    chatListItem: {
+        overflowWrap: "break-word",
+    }
 })
 const Chat = () => {
     const classes = useStyles();
@@ -59,10 +63,10 @@ const Chat = () => {
                     <Typography variant="h4" align="center">Chat</Typography>
                 </Grid>
                 <Grid container item className={classes.chatBox} alignItems="flex-end">
-                    <List>  
+                    <List dense>  
                     {messageArray.map((msg, id) => (
-                        <ListItem key={id}>
-                            <ListItemText>
+                        <ListItem key={id} className={classes.chatListItem}>
+                            <ListItemText >
                                 <Typography variant="body1">Jyotir: {msg}</Typography>
                             </ListItemText>
                         </ListItem>          
