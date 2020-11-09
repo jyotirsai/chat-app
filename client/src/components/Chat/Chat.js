@@ -34,6 +34,13 @@ const Chat = () => {
     const [messageItem, setMessageItem] = useState("");
     const [messageArray, setMessageArray] = useState([]);
 
+    const notLoggedIn = true;
+    let textfieldLabel = "Send a message";
+
+    if (notLoggedIn) {
+        textfieldLabel = "Login to chat"
+    }
+
     const handleChange = (event) => {
         setMessageItem(event.target.value);
     }
@@ -75,7 +82,7 @@ const Chat = () => {
                     </List>
                 </Grid>
                 <Grid item >
-                    <TextField value={messageItem} onChange={handleChange} onKeyPress={submit} size="small" fullWidth variant="filled" label="Send a message"></TextField>
+                    <TextField disabled={notLoggedIn} value={messageItem} onChange={handleChange} onKeyPress={submit} size="small" fullWidth variant="filled" label={textfieldLabel}></TextField>
                 </Grid>
             </Grid>
             </Paper>

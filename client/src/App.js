@@ -13,7 +13,14 @@ function App() {
   useEffect(() => {
     const socket = io(ENDPOINT);
     console.log(socket);
-  })
+
+    socket.send('Hello!');
+
+    return () => {
+      socket.emit('disconnect')
+      socket.off();
+    }
+  }, [ENDPOINT])
 
   return (
     <div className="App">
