@@ -8,6 +8,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  Button,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
@@ -22,18 +23,25 @@ const useStyles = makeStyles({
   },
   chatTitle: {
     height: "5vh",
-    borderBottom: "1px solid grey",
+    borderBottom: "1px solid #D0D0D0",
   },
   chatBox: {
-    height: "69.69vh",
+    height: "67.5vh",
     wordBreak: "break-all",
     overflow: "hidden",
     "&:hover": {
       overflowY: "scroll",
     },
+    borderBottom: "1px solid #D0D0D0",
   },
   chatListItem: {
     overflowWrap: "break-word",
+  },
+  textbox: {
+    width: 475,
+  },
+  gridtextbox: {
+    padding: 10,
   },
 });
 const Chat = () => {
@@ -52,8 +60,17 @@ const Chat = () => {
     setMessageItem(event.target.value);
   };
 
-  const submit = (event) => {
+  const submitEnter = (event) => {
     if (messageItem && event.key === "Enter") {
+      setMessageArray((prevMsgs) => {
+        return [...prevMsgs, messageItem];
+      });
+      setMessageItem("");
+    }
+  };
+
+  const submitClick = (event) => {
+    if (messageItem) {
       setMessageArray((prevMsgs) => {
         return [...prevMsgs, messageItem];
       });
@@ -100,17 +117,25 @@ const Chat = () => {
               <div ref={messagesEndRef} />
             </List>
           </Grid>
-          <Grid item>
+          <Grid
+            item
+            container
+            justify="space-between"
+            className={classes.gridtextbox}
+          >
             <TextField
+              className={classes.textbox}
               disabled={notLoggedIn}
               value={messageItem}
               onChange={handleChange}
-              onKeyPress={submit}
+              onKeyPress={submitEnter}
               size="small"
-              fullWidth
               variant="filled"
               label={textfieldLabel}
             ></TextField>
+            <Button variant="contained" disableElevation onClick={submitClick}>
+              Chat
+            </Button>
           </Grid>
         </Grid>
       </Paper>
