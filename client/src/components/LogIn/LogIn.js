@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardActions,
@@ -17,11 +17,15 @@ const useStyles = makeStyles({
 
 const LogIn = () => {
   const classes = useStyles();
+  const [username, setUsername] = useState("");
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography>Username</Typography>
-        <TextField />
+        <TextField
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
       </CardContent>
       <CardActions>
         <Button>Log In</Button>
