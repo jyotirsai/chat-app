@@ -15,16 +15,15 @@ const useStyles = makeStyles({
   },
 });
 
-const LogIn = () => {
+const LogIn = (props) => {
   const classes = useStyles();
-  const [username, setUsername] = useState("");
+
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography>Username</Typography>
         <TextField
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
+          onChange={(event) => props.setUsername(event.target.value)}
         />
       </CardContent>
       <CardActions>

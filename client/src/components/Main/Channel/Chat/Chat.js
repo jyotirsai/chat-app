@@ -15,7 +15,7 @@ import { makeStyles } from "@material-ui/styles";
 const useStyles = makeStyles({
   chatPaper: {
     height: "80vh",
-    width: "30vw",
+    width: "575px",
   },
   chatGrid: {
     height: "80vh",
@@ -44,7 +44,7 @@ const useStyles = makeStyles({
     padding: 10,
   },
 });
-const Chat = () => {
+const Chat = (props) => {
   const classes = useStyles();
   const [messageItem, setMessageItem] = useState("");
   const [messageArray, setMessageArray] = useState([]);
@@ -110,7 +110,9 @@ const Chat = () => {
               {messageArray.map((msg, id) => (
                 <ListItem key={id} className={classes.chatListItem}>
                   <ListItemText>
-                    <Typography variant="body1">Jyotir: {msg}</Typography>
+                    <Typography variant="body1">
+                      {props.username}: {msg}
+                    </Typography>
                   </ListItemText>
                 </ListItem>
               ))}
