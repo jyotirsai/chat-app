@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardActions,
@@ -27,7 +28,9 @@ const LogIn = (props) => {
         />
       </CardContent>
       <CardActions>
-        <Button>Log In</Button>
+        <Link to="/">
+          <Button>Log In</Button>
+        </Link>
       </CardActions>
     </Card>
   );

@@ -49,11 +49,10 @@ const Chat = (props) => {
   const [messageItem, setMessageItem] = useState("");
   const [messageArray, setMessageArray] = useState([]);
 
-  const notLoggedIn = false;
-  let textfieldLabel = "Send a message";
+  let textfieldLabel = "Login to chat";
 
-  if (notLoggedIn) {
-    textfieldLabel = "Login to chat";
+  if (props.username) {
+    textfieldLabel = "Send a message";
   }
 
   const handleChange = (event) => {
@@ -127,7 +126,7 @@ const Chat = (props) => {
           >
             <TextField
               className={classes.textbox}
-              disabled={notLoggedIn}
+              disabled={!props.username}
               value={messageItem}
               onChange={handleChange}
               onKeyPress={submitEnter}
