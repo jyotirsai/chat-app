@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import io from "socket.io-client";
 import "./Chat.css";
 import {
   Paper,
@@ -44,10 +45,29 @@ const useStyles = makeStyles({
     padding: 10,
   },
 });
+
+const ENDPOINT = "http://localhost:5000";
+const socket = io(ENDPOINT);
+
 const Chat = (props) => {
   const classes = useStyles();
   const [messageItem, setMessageItem] = useState("");
   const [messageArray, setMessageArray] = useState([]);
+
+  useEffect(() => {
+    console.log(socket);
+
+    return () => {
+      socket.emit("disc");
+      socket.off();
+    };
+  }, [ENDPOINT]);
+
+  useEffect(() => {
+    socket.on("message", (messageItem) => {
+      setMessageArray((messagesArray) => [...messagesArray, messageItem]);
+    });
+  }, []);
 
   let textfieldLabel = "Login to chat";
 
@@ -68,11 +88,10 @@ const Chat = (props) => {
     }
   };
 
-  const submitClick = (event) => {
+  const submitClick = (e) => {
+    e.preventDefault();
     if (messageItem) {
-      setMessageArray((prevMsgs) => {
-        return [...prevMsgs, messageItem];
-      });
+      socket.emit("message", messageItem);
       setMessageItem("");
     }
   };
