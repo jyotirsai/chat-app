@@ -11,51 +11,24 @@ import {
   ListItemText,
   Button,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
-
-const useStyles = makeStyles({
-  chatPaper: {
-    height: "80vh",
-    width: "575px",
-  },
-  chatGrid: {
-    height: "80vh",
-    width: "30vw",
-  },
-  chatTitle: {
-    height: "5vh",
-    borderBottom: "1px solid #D0D0D0",
-  },
-  chatBox: {
-    height: "67.5vh",
-    wordBreak: "break-all",
-    overflow: "hidden",
-    "&:hover": {
-      overflowY: "scroll",
-    },
-    borderBottom: "1px solid #D0D0D0",
-  },
-  chatListItem: {
-    overflowWrap: "break-word",
-  },
-  textbox: {
-    width: 475,
-  },
-  gridtextbox: {
-    padding: 10,
-  },
-});
+import useStyles from "./styles.js";
 
 const ENDPOINT = "http://localhost:5000";
 const socket = io(ENDPOINT);
+let textfieldLabel = "Login to chat";
 
 const Chat = (props) => {
   const classes = useStyles();
-  const [messageItem, setMessageItem] = useState("");
+  const [messageItem, setMessageItem] = useState({ name: "", message: "" });
   const [messageArray, setMessageArray] = useState([]);
 
   useEffect(() => {
     console.log(socket);
+
+    if (props.username) {
+      textfieldLabel = "Send a message";
+      setMessageItem({ name: props.username });
+    }
 
     return () => {
       socket.emit("disc");
@@ -65,43 +38,35 @@ const Chat = (props) => {
 
   useEffect(() => {
     socket.on("message", (messageItem) => {
-      setMessageArray((messagesArray) => [...messagesArray, messageItem]);
+      setMessageArray((messageArray) => [...messageArray, messageItem]);
     });
   }, []);
 
-  let textfieldLabel = "Login to chat";
-
-  if (props.username) {
-    textfieldLabel = "Send a message";
-  }
-
-  const handleChange = (event) => {
-    setMessageItem(event.target.value);
-  };
-
-  const submitEnter = (event) => {
+  /*   const submitEnter = (event) => {
     if (messageItem && event.key === "Enter") {
       setMessageArray((prevMsgs) => {
         return [...prevMsgs, messageItem];
       });
-      setMessageItem("");
+      setMessageItem({});
     }
+  }; */
+
+  const textChange = (e) => {
+    setMessageItem({ ...messageItem, message: e.target.value });
   };
 
   const submitClick = (e) => {
     e.preventDefault();
     if (messageItem) {
       socket.emit("message", messageItem);
-      setMessageItem("");
+      setMessageItem({ ...messageItem, message: "" });
     }
   };
 
   const messagesEndRef = useRef(null);
-
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
-
   useEffect(scrollToBottom, [messageArray]);
 
   return (
@@ -129,7 +94,7 @@ const Chat = (props) => {
                 <ListItem key={id} className={classes.chatListItem}>
                   <ListItemText>
                     <Typography variant="body1">
-                      {props.username}: {msg}
+                      {msg.name}: {msg.message}
                     </Typography>
                   </ListItemText>
                 </ListItem>
@@ -146,9 +111,9 @@ const Chat = (props) => {
             <TextField
               className={classes.textbox}
               disabled={!props.username}
-              value={messageItem}
-              onChange={handleChange}
-              onKeyPress={submitEnter}
+              value={messageItem.message}
+              onChange={textChange}
+              // onKeyPress={submitEnter}
               size="small"
               variant="filled"
               label={textfieldLabel}
