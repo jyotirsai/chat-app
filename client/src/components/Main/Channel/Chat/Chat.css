@@ -1,4 +1,6 @@
-.chat-styles {
-  height: 80vh;
-  width: 30vw;
+.form-style {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
 }

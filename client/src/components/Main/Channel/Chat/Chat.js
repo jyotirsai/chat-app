@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import io from "socket.io-client";
-import "./Chat.css";
 import {
   Paper,
   Typography,
@@ -12,6 +11,7 @@ import {
   Button,
 } from "@material-ui/core";
 import useStyles from "./styles.js";
+import "./Chat.css";
 
 const ENDPOINT = "http://localhost:5000";
 const socket = io(ENDPOINT);
@@ -42,22 +42,13 @@ const Chat = (props) => {
     });
   }, []);
 
-  /*   const submitEnter = (event) => {
-    if (messageItem && event.key === "Enter") {
-      setMessageArray((prevMsgs) => {
-        return [...prevMsgs, messageItem];
-      });
-      setMessageItem({});
-    }
-  }; */
-
   const textChange = (e) => {
     setMessageItem({ ...messageItem, message: e.target.value });
   };
 
   const submitClick = (e) => {
     e.preventDefault();
-    if (messageItem) {
+    if (messageItem.message) {
       socket.emit("message", messageItem);
       setMessageItem({ ...messageItem, message: "" });
     }
@@ -70,46 +61,36 @@ const Chat = (props) => {
   useEffect(scrollToBottom, [messageArray]);
 
   return (
-    <div className="chat-styles">
-      <Paper className={classes.chatPaper} square variant="outlined">
+    <Paper className={classes.container} square variant="outlined">
+      <Grid container justify="space-between" direction="column">
+        <Grid item className={classes.titleBox}>
+          <Typography variant="h4" align="center">
+            Chat
+          </Typography>
+        </Grid>
         <Grid
-          className={classes.chatGrid}
           container
-          justify="space-between"
-          direction="column"
+          item
+          className={classes.messageBox}
+          alignItems="flex-end"
         >
-          <Grid item className={classes.chatTitle}>
-            <Typography variant="h4" align="center">
-              Chat
-            </Typography>
-          </Grid>
-          <Grid
-            container
-            item
-            className={classes.chatBox}
-            alignItems="flex-end"
-          >
-            <List dense>
-              {messageArray.map((msg, id) => (
-                <ListItem key={id} className={classes.chatListItem}>
-                  <ListItemText>
-                    <Typography variant="body1">
-                      {msg.name}: {msg.message}
-                    </Typography>
-                  </ListItemText>
-                </ListItem>
-              ))}
-              <div ref={messagesEndRef} />
-            </List>
-          </Grid>
-          <Grid
-            item
-            container
-            justify="space-between"
-            className={classes.gridtextbox}
-          >
+          <List dense>
+            {messageArray.map((msg, id) => (
+              <ListItem key={id} className={classes.chatListItem}>
+                <ListItemText>
+                  <Typography variant="body1">
+                    {msg.name}: {msg.message}
+                  </Typography>
+                </ListItemText>
+              </ListItem>
+            ))}
+            <div ref={messagesEndRef} />
+          </List>
+        </Grid>
+        <Grid item container justify="space-between" className={classes.form}>
+          <form onSubmit={submitClick} className="form-style">
             <TextField
-              className={classes.textbox}
+              className={classes.textfield}
               disabled={!props.username}
               value={messageItem.message}
               onChange={textChange}
@@ -118,13 +99,18 @@ const Chat = (props) => {
               variant="filled"
               label={textfieldLabel}
             ></TextField>
-            <Button variant="contained" disableElevation onClick={submitClick}>
+            <Button
+              className={classes.button}
+              variant="contained"
+              disableElevation
+              onClick={submitClick}
+            >
               Chat
             </Button>
-          </Grid>
+          </form>
         </Grid>
-      </Paper>
-    </div>
+      </Grid>
+    </Paper>
   );
 };
 

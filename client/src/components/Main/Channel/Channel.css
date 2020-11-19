@@ -1,16 +1,31 @@
-.position {
-  position: absolute;
-  left: 43%;
-  top: 50%;
-  -webkit-transform: translate(-40%, -50%);
-  transform: translate(-40%, -50%);
+.main {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 50px;
   display: flex;
+  justify-content: center;
 }
 
-.sidebar {
-  height: 80vh;
-  width: 20vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.chat-box {
+  width: 50%;
+}
+
+.side-box {
+  width: 50%;
+  border: 1px solid black;
+}
+
+@media all and (max-width: 700px) {
+  .main {
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 45px 0;
+  }
+  .chat-box {
+    width: 90%;
+  }
+  .side-box {
+    width: 90%;
+  }
 }

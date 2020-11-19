@@ -8,9 +8,11 @@ import "./Channel.css";
 
 const Channel = (props) => {
   return (
-    <div className="position">
-      <Chat username={props.username} />
-      <div className="sidebar">
+    <div className="main">
+      <div className="chat-box">
+        <Chat username={props.username} />
+      </div>
+      <div className="side-box">
         <Score />
         <Live />
         <Poll />
