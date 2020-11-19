@@ -6,6 +6,7 @@ const useStyles = makeStyles({
     width: "100%",
     maxWidth: "1000px",
     margin: "0 auto",
+    backgroundColor: "#282828",
   },
   titleBox: {
     //borderBottom: "1px solid #D0D0D0",
@@ -29,9 +30,11 @@ const useStyles = makeStyles({
     overflowWrap: "break-word",
   },
   textfield: {
-    width: "83%",
+    width: "80%",
   },
-  button: {},
+  button: {
+    backgroundColor: "purple",
+  },
 });
 
 export default useStyles;

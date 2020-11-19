@@ -14,13 +14,16 @@ const useStyles = makeStyles({
   chatHeader: {
     marginRight: "auto",
   },
+  toolbar: {
+    backgroundColor: "#282828",
+  },
 });
 
 const Header = () => {
   const classes = useStyles();
   return (
     <AppBar position="static">
-      <Toolbar>
+      <Toolbar className={classes.toolbar}>
         <Typography variant="h6" className={classes.chatHeader}>
           Chat
         </Typography>

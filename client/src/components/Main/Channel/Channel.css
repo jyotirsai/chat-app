@@ -9,11 +9,13 @@
 
 .chat-box {
   width: 50%;
+  margin-left: 50px;
 }
 
 .side-box {
   width: 50%;
   border: 1px solid black;
+  margin-right: 50px;
 }
 
 @media all and (max-width: 700px) {
@@ -24,8 +26,10 @@
   }
   .chat-box {
     width: 90%;
+    margin: 0;
   }
   .side-box {
     width: 90%;
+    margin: 0;
   }
 }

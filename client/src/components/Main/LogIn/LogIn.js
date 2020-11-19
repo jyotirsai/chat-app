@@ -35,8 +35,8 @@ const LogIn = (props) => {
 
   const submitRegistration = (event) => {
     event.preventDefault();
-    if (password === confirmPassword) {
-      console.log("passwords match");
+    if (password !== confirmPassword) {
+      console.log("error");
     }
     console.log("ran function");
   };
