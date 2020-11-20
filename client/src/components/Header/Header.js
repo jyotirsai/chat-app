@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     marginRight: "auto",
   },
   toolbar: {
-    backgroundColor: "#282828",
+    backgroundColor: "#301934",
   },
 });
 

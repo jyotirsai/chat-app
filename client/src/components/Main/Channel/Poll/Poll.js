@@ -1,15 +1,41 @@
-import React from 'react'
-import './Poll.css'
-import {Typography, Grid} from '@material-ui/core'
+import React from "react";
+import { Typography, Grid, Paper } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 
-const Poll = () => {
-    return (
-        <div className="poll-styles">
-            <Grid container justify="center">
-                <Typography variant="h4">Polls</Typography>
-            </Grid>
-        </div>
-    )
-}
+const useStyles = makeStyles({
+  headerText: {
+    color: "#E0E0E0",
+  },
+  container: {
+    height: "232.5px",
+    backgroundColor: "#202020",
+    border: "1px solid #383838",
+  },
+  titleBox: {
+    borderBottom: "1px solid #383838",
+    padding: 10,
+  },
+});
 
-export default Poll
+const Live = () => {
+  const classes = useStyles();
+  return (
+    <div className="score-styles">
+      <Paper className={classes.container} square variant="outlined">
+        <Grid container direction="column">
+          <Grid item className={classes.titleBox}>
+            <Typography
+              className={classes.headerText}
+              variant="h5"
+              align="center"
+            >
+              Poll
+            </Typography>
+          </Grid>
+        </Grid>
+      </Paper>
+    </div>
+  );
+};
+
+export default Live;

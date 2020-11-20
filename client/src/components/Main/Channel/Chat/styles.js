@@ -2,15 +2,16 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
   container: {
-    border: "1px solid blue",
     width: "100%",
     maxWidth: "1000px",
     margin: "0 auto",
-    backgroundColor: "#282828",
+    backgroundColor: "#202020",
+    border: "1px solid #383838",
   },
   titleBox: {
-    //borderBottom: "1px solid #D0D0D0",
-    border: "1px solid purple",
+    borderBottom: "1px solid #383838",
+    color: "#E0E0E0",
+    padding: 10,
   },
   messageBox: {
     wordBreak: "break-all",
@@ -18,22 +19,28 @@ const useStyles = makeStyles({
     "&:hover": {
       overflowY: "scroll",
     },
-    // borderBottom: "1px solid #D0D0D0",
-    border: "1px solid orange",
+
     height: "600px",
   },
   form: {
-    border: "1px solid green",
     width: "100%",
   },
   chatListItem: {
     overflowWrap: "break-word",
+    color: "#E0E0E0",
   },
   textfield: {
     width: "80%",
+    "& label.Mui-focused": {
+      color: "#585858",
+    },
+  },
+  input: {
+    color: "#E0E0E0",
   },
   button: {
-    backgroundColor: "purple",
+    backgroundColor: "#4B0082",
+    color: "white",
   },
 });
 

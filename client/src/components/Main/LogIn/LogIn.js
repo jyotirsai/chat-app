@@ -18,12 +18,16 @@ const useStyles = makeStyles({
     width: "100%",
     margin: "80px auto",
     padding: 25,
+    backgroundColor: "#202020",
+    border: "1px solid #383838",
   },
   box: {
     width: "100%",
-
     textAlign: "center",
     paddingTop: "50px",
+  },
+  headerText: {
+    color: "#E0E0E0",
   },
 });
 
@@ -43,14 +47,22 @@ const LogIn = (props) => {
 
   return (
     <Box className={classes.box} component="div">
-      <Typography variant="h1">Welcome to Chat App!</Typography>
-      <Typography variant="subtitle1">Sign up below to chat!</Typography>
+      <Typography className={classes.headerText} variant="h1">
+        Welcome to Chat App!
+      </Typography>
+      <Typography className={classes.headerText} variant="subtitle1">
+        Sign up below to chat!
+      </Typography>
       <Paper className={classes.root}>
-        <Typography variant="h4">Sign Up</Typography>
+        <Typography className={classes.headerText} variant="h4">
+          Sign Up
+        </Typography>
         <form onSubmit={submitRegistration}>
           <FormControl required fullWidth>
             <TextField
               onChange={(event) => props.setUsername(event.target.value)}
+              InputLabelProps={{ className: classes.headerText }}
+              inputProps={{ className: classes.headerText }}
               placeholder="Username"
             />
           </FormControl>
@@ -58,6 +70,8 @@ const LogIn = (props) => {
             <TextField
               value={email}
               onChange={(event) => setEmail(event.target.value)}
+              InputLabelProps={{ className: classes.headerText }}
+              inputProps={{ className: classes.headerText }}
               placeholder="Email"
               type="email"
             />
@@ -66,6 +80,8 @@ const LogIn = (props) => {
             <TextField
               value={password}
               onChange={(event) => setPassword(event.target.value)}
+              InputLabelProps={{ className: classes.headerText }}
+              inputProps={{ className: classes.headerText }}
               placeholder="Password"
             />
           </FormControl>
@@ -73,11 +89,15 @@ const LogIn = (props) => {
             <TextField
               value={confirmPassword}
               onChange={(event) => setConfirmPassword(event.target.value)}
+              InputLabelProps={{ className: classes.headerText }}
+              inputProps={{ className: classes.headerText }}
               placeholder="Confirm Password"
             />
           </FormControl>
 
-          <Button type="submit">JOIN</Button>
+          <Button className={classes.headerText} type="submit">
+            JOIN
+          </Button>
         </form>
       </Paper>
     </Box>

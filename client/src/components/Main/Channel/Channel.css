@@ -10,12 +10,16 @@
 .chat-box {
   width: 50%;
   margin-left: 50px;
+  margin-right: 10px;
 }
 
 .side-box {
   width: 50%;
-  border: 1px solid black;
   margin-right: 50px;
+  height: 723px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 @media all and (max-width: 700px) {

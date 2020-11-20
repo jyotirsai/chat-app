@@ -64,7 +64,7 @@ const Chat = (props) => {
     <Paper className={classes.container} square variant="outlined">
       <Grid container justify="space-between" direction="column">
         <Grid item className={classes.titleBox}>
-          <Typography variant="h4" align="center">
+          <Typography variant="h5" align="center">
             Chat
           </Typography>
         </Grid>
@@ -91,6 +91,8 @@ const Chat = (props) => {
           <form onSubmit={submitClick} className="form-style">
             <TextField
               className={classes.textfield}
+              InputLabelProps={{ className: classes.input }}
+              inputProps={{ className: classes.input }}
               disabled={!props.username}
               value={messageItem.message}
               onChange={textChange}
