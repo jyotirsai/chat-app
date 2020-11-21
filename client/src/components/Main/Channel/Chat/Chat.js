@@ -96,7 +96,6 @@ const Chat = (props) => {
               disabled={!props.username}
               value={messageItem.message}
               onChange={textChange}
-              // onKeyPress={submitEnter}
               size="small"
               variant="filled"
               label={textfieldLabel}

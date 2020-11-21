@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   Paper,
@@ -31,7 +31,7 @@ const useStyles = makeStyles({
   },
 });
 
-const LogIn = (props) => {
+const SignUp = (props) => {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -60,6 +60,7 @@ const LogIn = (props) => {
         <form onSubmit={submitRegistration}>
           <FormControl required fullWidth>
             <TextField
+              name="username"
               onChange={(event) => props.setUsername(event.target.value)}
               InputLabelProps={{ className: classes.headerText }}
               inputProps={{ className: classes.headerText }}
@@ -68,8 +69,9 @@ const LogIn = (props) => {
           </FormControl>
           <FormControl fullWidth>
             <TextField
+              name="email"
               value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              //onChange={}
               InputLabelProps={{ className: classes.headerText }}
               inputProps={{ className: classes.headerText }}
               placeholder="Email"
@@ -78,8 +80,9 @@ const LogIn = (props) => {
           </FormControl>
           <FormControl fullWidth>
             <TextField
+              name="password"
               value={password}
-              onChange={(event) => setPassword(event.target.value)}
+              //onChange={(event) => setPassword(event.target.value)}
               InputLabelProps={{ className: classes.headerText }}
               inputProps={{ className: classes.headerText }}
               placeholder="Password"
@@ -87,21 +90,23 @@ const LogIn = (props) => {
           </FormControl>
           <FormControl fullWidth>
             <TextField
+              name="confirmPassword"
               value={confirmPassword}
-              onChange={(event) => setConfirmPassword(event.target.value)}
+              //onChange={(event) => setConfirmPassword(event.target.value)}
               InputLabelProps={{ className: classes.headerText }}
               inputProps={{ className: classes.headerText }}
               placeholder="Confirm Password"
             />
           </FormControl>
-
-          <Button className={classes.headerText} type="submit">
-            JOIN
-          </Button>
+          <Link to="/">
+            <Button className={classes.headerText} type="submit">
+              JOIN
+            </Button>
+          </Link>
         </form>
       </Paper>
     </Box>
   );
 };
 
-export default LogIn;
+export default SignUp;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Channel from "./Channel/Channel";
-import LogIn from "./LogIn/LogIn";
+import SignUp from "./SignUp/SignUp";
 import { Switch, Route } from "react-router-dom";
 
 const Main = () => {
@@ -13,7 +13,7 @@ const Main = () => {
         <Channel username={username} />
       </Route>
       <Route path="/login">
-        <LogIn setUsername={setUsername} />
+        <SignUp setUsername={setUsername} />
       </Route>
     </Switch>
   );

@@ -13,15 +13,6 @@
   margin-right: 10px;
 }
 
-.side-box {
-  width: 50%;
-  margin-right: 50px;
-  height: 723px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 @media all and (max-width: 700px) {
   .main {
     flex-direction: column-reverse;
@@ -35,5 +26,6 @@
   .side-box {
     width: 90%;
     margin: 0;
+    margin-bottom: 10px;
   }
 }

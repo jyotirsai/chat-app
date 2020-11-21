@@ -15,12 +15,13 @@ const useStyles = makeStyles({
     marginRight: "auto",
   },
   toolbar: {
-    backgroundColor: "#301934",
+    backgroundColor: "#181818",
   },
 });
 
 const Header = () => {
   const classes = useStyles();
+
   return (
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
@@ -35,7 +36,7 @@ const Header = () => {
           </Link>
           <Link to="/login" className={classes.linkStyles}>
             <Button edge="end" color="inherit">
-              Login
+              Sign Up
             </Button>
           </Link>
         </Grid>
