@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Typography, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import SignupButton from "./signup-button";
-import LoginButton from "./login-button";
+import SignUp from "../../Authentication/SignUp";
+import LogIn from "../../Authentication/LogIn";
 
 const useStyles = makeStyles({
   root: {
@@ -46,8 +46,8 @@ const Landing = () => {
       <Typography className={classes.headerText} variant="subtitle1">
         Sign up below to chat!
       </Typography>
-      <SignupButton />
-      <LoginButton />
+      <SignUp />
+      <LogIn />
     </Box>
   );
 };

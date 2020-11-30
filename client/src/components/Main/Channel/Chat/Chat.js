@@ -13,12 +13,15 @@ let textfieldLabel = "Login to chat";
 
 const Chat = () => {
   const classes = useStyles();
+  const { user } = useAuth0();
   const [messageItem, setMessageItem] = useState({ name: "", message: "" });
   const [messageArray, setMessageArray] = useState([]);
 
+  console.log(user);
+
   useEffect(() => {
     console.log(socket);
-    let username = "username";
+    let username = user;
 
     if (username) {
       textfieldLabel = "Send a message";

@@ -2,6 +2,7 @@ import React from "react";
 import { AppBar, Toolbar, Typography, Button, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
+import LogOut from "../Authentication/LogOut";
 
 const useStyles = makeStyles({
   navLinks: {
@@ -34,11 +35,7 @@ const Header = () => {
               Chat
             </Button>
           </Link>
-          <Link to="/" className={classes.linkStyles}>
-            <Button edge="end" color="inherit">
-              LOGOUT
-            </Button>
-          </Link>
+          <LogOut />
         </Grid>
       </Toolbar>
     </AppBar>
