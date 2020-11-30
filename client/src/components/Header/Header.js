@@ -26,15 +26,15 @@ const Header = () => {
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
         <Typography variant="h6" className={classes.chatHeader}>
-          Chat
+          ChatApp
         </Typography>
         <Grid className={classes.navLinks}>
-          <Link to="/" className={classes.linkStyles}>
+          <Link to="/chat" className={classes.linkStyles}>
             <Button edge="end" color="inherit">
-              Sport
+              Chat
             </Button>
           </Link>
-          <Link to="/login" className={classes.linkStyles}>
+          <Link to="/" className={classes.linkStyles}>
             <Button edge="end" color="inherit">
               Sign Up
             </Button>

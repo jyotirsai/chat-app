@@ -3,11 +3,11 @@ import Chat from "./Chat/Chat";
 
 import "./Channel.css";
 
-const Channel = (props) => {
+const Channel = () => {
   return (
     <div className="main">
       <div className="chat-box">
-        <Chat username={props.username} />
+        <Chat />
       </div>
     </div>
   );

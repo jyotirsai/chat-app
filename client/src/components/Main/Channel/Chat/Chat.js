@@ -1,33 +1,28 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
-import {
-  Paper,
-  Typography,
-  Grid,
-  TextField,
-  List,
-  ListItem,
-  ListItemText,
-  Button,
-} from "@material-ui/core";
+import { Paper, Typography, Grid } from "@material-ui/core";
+import { useAuth0 } from "@auth0/auth0-react";
 import useStyles from "./styles.js";
 import "./Chat.css";
+import Messages from "./Messages/Messages";
+import FormBox from "./FormBox/FormBox";
 
 const ENDPOINT = "http://localhost:5000";
 const socket = io(ENDPOINT);
 let textfieldLabel = "Login to chat";
 
-const Chat = (props) => {
+const Chat = () => {
   const classes = useStyles();
   const [messageItem, setMessageItem] = useState({ name: "", message: "" });
   const [messageArray, setMessageArray] = useState([]);
 
   useEffect(() => {
     console.log(socket);
+    let username = "blah";
 
-    if (props.username) {
+    if (username) {
       textfieldLabel = "Send a message";
-      setMessageItem({ name: props.username });
+      setMessageItem({ name: username });
     }
 
     return () => {
@@ -42,10 +37,6 @@ const Chat = (props) => {
     });
   }, []);
 
-  const textChange = (e) => {
-    setMessageItem({ ...messageItem, message: e.target.value });
-  };
-
   const submitClick = (e) => {
     e.preventDefault();
     if (messageItem.message) {
@@ -53,12 +44,6 @@ const Chat = (props) => {
       setMessageItem({ ...messageItem, message: "" });
     }
   };
-
-  const messagesEndRef = useRef(null);
-  const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  };
-  useEffect(scrollToBottom, [messageArray]);
 
   return (
     <Paper className={classes.container} square variant="outlined">
@@ -74,41 +59,14 @@ const Chat = (props) => {
           className={classes.messageBox}
           alignItems="flex-end"
         >
-          <List dense>
-            {messageArray.map((msg, id) => (
-              <ListItem key={id} className={classes.chatListItem}>
-                <ListItemText>
-                  <Typography variant="body1">
-                    {msg.name}: {msg.message}
-                  </Typography>
-                </ListItemText>
-              </ListItem>
-            ))}
-            <div ref={messagesEndRef} />
-          </List>
+          <Messages messageArray={messageArray} />
         </Grid>
         <Grid item container justify="space-between" className={classes.form}>
-          <form onSubmit={submitClick} className="form-style">
-            <TextField
-              className={classes.textfield}
-              InputLabelProps={{ className: classes.input }}
-              inputProps={{ className: classes.input }}
-              disabled={!props.username}
-              value={messageItem.message}
-              onChange={textChange}
-              size="small"
-              variant="filled"
-              label={textfieldLabel}
-            ></TextField>
-            <Button
-              className={classes.button}
-              variant="contained"
-              disableElevation
-              onClick={submitClick}
-            >
-              Chat
-            </Button>
-          </form>
+          <FormBox
+            submitClick={submitClick}
+            setMessageItem={setMessageItem}
+            messageItem={messageItem}
+          />
         </Grid>
       </Grid>
     </Paper>
