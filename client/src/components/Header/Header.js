@@ -36,7 +36,7 @@ const Header = () => {
           </Link>
           <Link to="/" className={classes.linkStyles}>
             <Button edge="end" color="inherit">
-              Sign Up
+              LOGOUT
             </Button>
           </Link>
         </Grid>

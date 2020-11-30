@@ -18,7 +18,7 @@ const Chat = () => {
 
   useEffect(() => {
     console.log(socket);
-    let username = "blah";
+    let username = "username";
 
     if (username) {
       textfieldLabel = "Send a message";
