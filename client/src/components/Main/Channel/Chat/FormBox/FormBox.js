@@ -1,8 +1,10 @@
 import React from "react";
-import { TextField, Button } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import useStyles from "../styles.js";
+import ChatButton from "./chat-button.js";
+import SignupButton from "./signup-button.js";
 
-let label = "Login to Chat";
+let label = "Login or Signup to Chat";
 const FormBox = ({
   submitClick,
   setMessageItem,
@@ -30,14 +32,7 @@ const FormBox = ({
         disabled={!isAuthenticated}
         label={label}
       ></TextField>
-      <Button
-        className={classes.button}
-        variant="contained"
-        disableElevation
-        onClick={submitClick}
-      >
-        Chat
-      </Button>
+      <ChatButton submitClick={submitClick} />
     </form>
   );
 };

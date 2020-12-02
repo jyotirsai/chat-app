@@ -1,8 +1,10 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Button, Grid } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { AppBar, Toolbar, Typography, Grid } from "@material-ui/core";
+import { useAuth0 } from "@auth0/auth0-react";
 import { makeStyles } from "@material-ui/styles";
+import LogIn from "../Authentication/LogIn";
 import LogOut from "../Authentication/LogOut";
+import SignUp from "../Authentication/SignUp";
 
 const useStyles = makeStyles({
   navLinks: {
@@ -22,20 +24,16 @@ const useStyles = makeStyles({
 
 const Header = () => {
   const classes = useStyles();
-
+  const { isAuthenticated } = useAuth0();
   return (
     <AppBar position="static">
       <Toolbar className={classes.toolbar}>
         <Typography variant="h6" className={classes.chatHeader}>
-          ChatApp
+          Chat
         </Typography>
         <Grid className={classes.navLinks}>
-          <Link to="/chat" className={classes.linkStyles}>
-            <Button edge="end" color="inherit">
-              Chat
-            </Button>
-          </Link>
-          <LogOut />
+          <SignUp />
+          {isAuthenticated ? <LogOut /> : <LogIn />}
         </Grid>
       </Toolbar>
     </AppBar>
