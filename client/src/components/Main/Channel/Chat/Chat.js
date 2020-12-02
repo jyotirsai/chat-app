@@ -14,7 +14,7 @@ let username;
 
 const Chat = () => {
   const classes = useStyles();
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const [messageItem, setMessageItem] = useState({
     name: "",
     message: "",
@@ -25,13 +25,10 @@ const Chat = () => {
     if (typeof user !== "undefined") {
       username = user["http://localhost:3000/username"];
       setMessageItem({ name: username });
-      console.log(username);
     }
   }, [user]);
 
   useEffect(() => {
-    console.log(socket);
-
     return () => {
       socket.emit("disc");
       socket.off();
@@ -73,6 +70,7 @@ const Chat = () => {
             submitClick={submitClick}
             setMessageItem={setMessageItem}
             messageItem={messageItem}
+            isAuthenticated={isAuthenticated}
           />
         </Grid>
       </Grid>

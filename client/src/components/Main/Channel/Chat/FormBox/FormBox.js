@@ -2,8 +2,19 @@ import React from "react";
 import { TextField, Button } from "@material-ui/core";
 import useStyles from "../styles.js";
 
-const FormBox = ({ submitClick, setMessageItem, messageItem }) => {
+let label = "Login to Chat";
+const FormBox = ({
+  submitClick,
+  setMessageItem,
+  messageItem,
+  isAuthenticated,
+}) => {
   const classes = useStyles();
+
+  if (isAuthenticated) {
+    label = "Send a Message";
+  }
+
   return (
     <form onSubmit={submitClick} className="form-style">
       <TextField
@@ -16,6 +27,8 @@ const FormBox = ({ submitClick, setMessageItem, messageItem }) => {
         }
         size="small"
         variant="filled"
+        disabled={!isAuthenticated}
+        label={label}
       ></TextField>
       <Button
         className={classes.button}
