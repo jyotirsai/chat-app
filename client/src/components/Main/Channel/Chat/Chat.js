@@ -10,23 +10,27 @@ import FormBox from "./FormBox/FormBox";
 const ENDPOINT = "http://localhost:5000";
 const socket = io(ENDPOINT);
 let textfieldLabel = "Login to chat";
+let username;
 
 const Chat = () => {
   const classes = useStyles();
   const { user } = useAuth0();
-  const [messageItem, setMessageItem] = useState({ name: "", message: "" });
+  const [messageItem, setMessageItem] = useState({
+    name: "",
+    message: "",
+  });
   const [messageArray, setMessageArray] = useState([]);
 
-  console.log(user);
+  useEffect(() => {
+    if (typeof user !== "undefined") {
+      username = user["http://localhost:3000/username"];
+      setMessageItem({ name: username });
+      console.log(username);
+    }
+  }, [user]);
 
   useEffect(() => {
     console.log(socket);
-    let username = user;
-
-    if (username) {
-      textfieldLabel = "Send a message";
-      setMessageItem({ name: username });
-    }
 
     return () => {
       socket.emit("disc");

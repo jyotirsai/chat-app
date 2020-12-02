@@ -10,7 +10,7 @@ const FormBox = ({ submitClick, setMessageItem, messageItem }) => {
         className={classes.textfield}
         InputLabelProps={{ className: classes.input }}
         inputProps={{ className: classes.input }}
-        value={messageItem.message}
+        value={messageItem.message || ""}
         onChange={({ target: { value } }) =>
           setMessageItem({ ...messageItem, message: value })
         }
