@@ -10,7 +10,7 @@ User's can sign in with their social media accounts thanks to Auth0.
 
  ## Before signup.
 
-<img src="before-signup.PNG" width="500px" height="500px">
+<img src="before-signup.PNG" width="500px" height="500px" style="text-align:center;">
 
 ## After signup.
 
