@@ -2,7 +2,7 @@
 
 A real-time chat application allowing users to broadcast messages to an entire chat room.
 
-Front-end was built using functional React and styling was completed using Material-UI.
+Front-end was built using functional <strong>React</strong> and styling was completed using Material-UI.
 
 Back-end chat functionality built using Express and socket.io.
 
