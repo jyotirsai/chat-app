@@ -8,8 +8,10 @@ Back-end chat functionality built using Express and socket.io.
 
 User's can sign in with their social media accounts thanks to Auth0.
 
-Before signup.
+ ## Before signup.
+
 <img src="before-signup.PNG">
 
-After signup.
+## After signup.
+
 <img src="chat-image.PNG">
